@@ -8,11 +8,11 @@ inThisBuild(
     organizationName := "Heiko Seeberger",
     startYear        := Some(2015),
     licenses += ("Apache-2.0", url("http://www.apache.org/licenses/LICENSE-2.0")),
-    homepage := Some(url("https://github.com/hseeberger/akka-http-json")),
+    homepage := Some(url("https://github.com/hseeberger/pekko-http-json")),
     scmInfo := Some(
       ScmInfo(
-        url("https://github.com/hseeberger/akka-http-json"),
-        "git@github.com:hseeberger/akka-http-json.git"
+        url("https://github.com/hseeberger/pekko-http-json"),
+        "git@github.com:hseeberger/pekko-http-json.git"
       )
     ),
     developers := List(
@@ -23,7 +23,7 @@ inThisBuild(
         url("https://github.com/hseeberger")
       )
     ),
-    scalaVersion       := "2.13.10",
+    scalaVersion       := "2.13.12",
     crossScalaVersions := Seq(scalaVersion.value, "2.12.17"),
     scalacOptions ++= Seq(
       "-unchecked",
@@ -47,21 +47,21 @@ val withScala3 = Seq(
 // Projects
 // *****************************************************************************
 
-lazy val `akka-http-json` =
+lazy val `pekko-http-json` =
   project
     .in(file("."))
     .disablePlugins(MimaPlugin)
     .aggregate(
-      `akka-http-argonaut`,
-      `akka-http-avro4s`,
-      `akka-http-circe`,
-      `akka-http-jackson`,
-      `akka-http-json4s`,
-      `akka-http-jsoniter-scala`,
-      `akka-http-ninny`,
-      `akka-http-play-json`,
-      `akka-http-upickle`,
-      `akka-http-zio-json`,
+      `pekko-http-argonaut`,
+      `pekko-http-avro4s`,
+      `pekko-http-circe`,
+      `pekko-http-jackson`,
+      `pekko-http-json4s`,
+      `pekko-http-jsoniter-scala`,
+      `pekko-http-ninny`,
+      `pekko-http-play-json`,
+      `pekko-http-upickle`,
+      `pekko-http-zio-json`,
     )
     .settings(commonSettings)
     .settings(
@@ -70,140 +70,140 @@ lazy val `akka-http-json` =
       publishArtifact                      := false,
     )
 
-lazy val `akka-http-argonaut` =
+lazy val `pekko-http-argonaut` =
   project
     .enablePlugins(AutomateHeaderPlugin)
     .settings(commonSettings, withScala3)
     .settings(
       libraryDependencies ++= Seq(
-        library.akkaHttp,
+        library.pekkoHttp,
         library.argonaut,
-        library.akkaStream % Provided,
-        library.scalaTest  % Test,
+        library.pekkoStream % Provided,
+        library.scalaTest   % Test,
       )
     )
 
-lazy val `akka-http-circe` =
+lazy val `pekko-http-circe` =
   project
     .enablePlugins(AutomateHeaderPlugin)
     .settings(commonSettings)
     .settings(
       libraryDependencies ++= Seq(
-        library.akkaHttp,
+        library.pekkoHttp,
         library.circe,
         library.circeParser,
-        library.akkaStream   % Provided,
+        library.pekkoStream  % Provided,
         library.circeGeneric % Test,
         library.scalaTest    % Test,
       )
     )
 
-lazy val `akka-http-jackson` =
+lazy val `pekko-http-jackson` =
   project
     .enablePlugins(AutomateHeaderPlugin)
     .settings(commonSettings)
     .settings(
       libraryDependencies ++= Seq(
-        library.akkaHttp,
-        library.akkaHttpJacksonJava,
+        library.pekkoHttp,
+        library.pekkoHttpJacksonJava,
         library.jacksonModuleScala,
-        "org.scala-lang"   % "scala-reflect" % scalaVersion.value,
-        library.akkaStream % Provided,
-        library.scalaTest  % Test,
+        "org.scala-lang"    % "scala-reflect" % scalaVersion.value,
+        library.pekkoStream % Provided,
+        library.scalaTest   % Test,
       )
     )
 
-lazy val `akka-http-json4s` =
+lazy val `pekko-http-json4s` =
   project
     .enablePlugins(AutomateHeaderPlugin)
     .settings(commonSettings, withScala3)
     .settings(
       libraryDependencies ++= Seq(
-        library.akkaHttp,
+        library.pekkoHttp,
         library.json4sCore,
-        library.akkaStream    % Provided,
+        library.pekkoStream   % Provided,
         library.json4sJackson % Test,
         library.json4sNative  % Test,
         library.scalaTest     % Test,
       )
     )
 
-lazy val `akka-http-jsoniter-scala` =
+lazy val `pekko-http-jsoniter-scala` =
   project
     .enablePlugins(AutomateHeaderPlugin)
     .settings(commonSettings, withScala3)
     .settings(
       libraryDependencies ++= Seq(
-        library.akkaHttp,
+        library.pekkoHttp,
         library.jsoniterScalaCore,
-        library.akkaStream          % Provided,
+        library.pekkoStream         % Provided,
         library.jsoniterScalaMacros % Test,
         library.scalaTest           % Test,
       )
     )
 
-lazy val `akka-http-ninny` =
+lazy val `pekko-http-ninny` =
   project
     .enablePlugins(AutomateHeaderPlugin)
     .settings(commonSettings, withScala3)
     .settings(
       libraryDependencies ++= Seq(
-        library.akkaHttp,
+        library.pekkoHttp,
         library.ninny,
-        library.akkaStream % Provided,
-        library.scalaTest  % Test,
+        library.pekkoStream % Provided,
+        library.scalaTest   % Test,
       )
     )
 
-lazy val `akka-http-play-json` =
+lazy val `pekko-http-play-json` =
   project
     .enablePlugins(AutomateHeaderPlugin)
     .settings(commonSettings)
     .settings(
       libraryDependencies ++= Seq(
-        library.akkaHttp,
+        library.pekkoHttp,
         library.playJson,
-        library.akkaStream % Provided,
-        library.scalaTest  % Test,
+        library.pekkoStream % Provided,
+        library.scalaTest   % Test,
       )
     )
 
-lazy val `akka-http-upickle` =
+lazy val `pekko-http-upickle` =
   project
     .enablePlugins(AutomateHeaderPlugin)
     .settings(commonSettings)
     .settings(
       libraryDependencies ++= Seq(
-        library.akkaHttp,
+        library.pekkoHttp,
         library.upickle,
-        library.akkaStream % Provided,
-        library.scalaTest  % Test,
+        library.pekkoStream % Provided,
+        library.scalaTest   % Test,
       )
     )
 
-lazy val `akka-http-avro4s` =
+lazy val `pekko-http-avro4s` =
   project
     .enablePlugins(AutomateHeaderPlugin)
     .settings(commonSettings)
     .settings(
       libraryDependencies ++= Seq(
-        library.akkaHttp,
+        library.pekkoHttp,
         library.avro4sJson,
-        library.akkaStream % Provided,
-        library.scalaTest  % Test,
+        library.pekkoStream % Provided,
+        library.scalaTest   % Test,
       )
     )
 
-lazy val `akka-http-zio-json` =
+lazy val `pekko-http-zio-json` =
   project
     .enablePlugins(AutomateHeaderPlugin)
     .settings(commonSettings, withScala3)
     .settings(
       libraryDependencies ++= Seq(
-        library.akkaHttp,
+        library.pekkoHttp,
         library.zioJson,
-        library.akkaStream % Provided,
-        library.scalaTest  % Test
+        library.pekkoStream % Provided,
+        library.scalaTest   % Test
       )
     )
 
@@ -227,24 +227,24 @@ lazy val commonSettings =
 lazy val library =
   new {
     object Version {
-      val akka               = "2.6.20"
-      val akkaHttp           = "10.2.10"
-      val argonaut           = "6.3.8"
-      val avro4s             = "4.0.12"
-      val circe              = "0.14.1"
-      val jacksonModuleScala = "2.13.1"
-      val json4s             = "4.0.6"
-      val jsoniterScala      = "2.17.9"
-      val ninny              = "0.7.0"
-      val play               = "2.9.2"
-      val scalaTest          = "3.2.11"
-      val upickle            = "1.5.0"
-      val zioJson            = "0.3.0"
+      val pekko              = "1.0.2"
+      val pekkoHttp          = "1.0.0"
+      val argonaut           = "6.3.9"
+      val avro4s             = "4.1.1"
+      val circe              = "0.14.6"
+      val jacksonModuleScala = "2.16.1"
+      val json4s             = "4.0.7"
+      val jsoniterScala      = "2.28.0"
+      val ninny              = "0.8.2"
+      val play               = "2.10.4"
+      val scalaTest          = "3.2.17"
+      val upickle            = "3.1.4"
+      val zioJson            = "0.6.2"
     }
     // format: off
-    val akkaHttp            = ("com.typesafe.akka"                     %% "akka-http"             % Version.akkaHttp).cross(CrossVersion.for3Use2_13)
-    val akkaHttpJacksonJava = ("com.typesafe.akka"                     %% "akka-http-jackson"     % Version.akkaHttp).cross(CrossVersion.for3Use2_13)
-    val akkaStream          = "com.typesafe.akka"                     %% "akka-stream"           % Version.akka
+    val pekkoHttp            = ("org.apache.pekko"                     %% "pekko-http"             % Version.pekkoHttp).cross(CrossVersion.for3Use2_13)
+    val pekkoHttpJacksonJava = ("org.apache.pekko"                     %% "pekko-http-jackson"     % Version.pekkoHttp).cross(CrossVersion.for3Use2_13)
+    val pekkoStream          = "org.apache.pekko"                      %% "pekko-stream"           % Version.pekko
     val argonaut            = "io.argonaut"                           %% "argonaut"              % Version.argonaut
     val avro4sJson          = "com.sksamuel.avro4s"                   %% "avro4s-json"           % Version.avro4s
     val circe               = "io.circe"                              %% "circe-core"            % Version.circe
