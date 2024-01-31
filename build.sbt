@@ -24,7 +24,6 @@ inThisBuild(
       )
     ),
     scalaVersion       := "2.13.12",
-    crossScalaVersions := Seq(scalaVersion.value, "2.12.17"),
     scalacOptions ++= Seq(
       "-unchecked",
       "-deprecation",
@@ -32,7 +31,6 @@ inThisBuild(
       "-encoding",
       "UTF-8",
       "-Ywarn-unused:imports",
-      "-target:jvm-1.8"
     ),
     scalafmtOnCompile := true,
     dynverSeparator   := "_" // the default `+` is not compatible with docker tags,
