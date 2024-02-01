@@ -8,11 +8,11 @@ inThisBuild(
     organizationName := "Heiko Seeberger",
     startYear        := Some(2015),
     licenses += ("Apache-2.0", url("http://www.apache.org/licenses/LICENSE-2.0")),
-    homepage := Some(url("https://github.com/hseeberger/pekko-http-json")),
+    homepage := Some(url("https://github.com/hseeberger/akka-http-json")),
     scmInfo := Some(
       ScmInfo(
-        url("https://github.com/hseeberger/pekko-http-json"),
-        "git@github.com:hseeberger/pekko-http-json.git"
+        url("https://github.com/hseeberger/akka-http-json"),
+        "git@github.com:hseeberger/akka-http-json.git"
       )
     ),
     developers := List(
@@ -23,14 +23,13 @@ inThisBuild(
         url("https://github.com/hseeberger")
       )
     ),
-    scalaVersion       := "2.13.12",
+    scalaVersion := "2.13.12",
     scalacOptions ++= Seq(
       "-unchecked",
       "-deprecation",
       "-language:_",
       "-encoding",
       "UTF-8",
-      "-Ywarn-unused:imports",
     ),
     scalafmtOnCompile := true,
     dynverSeparator   := "_" // the default `+` is not compatible with docker tags,
@@ -38,7 +37,7 @@ inThisBuild(
 )
 
 val withScala3 = Seq(
-  crossScalaVersions += "3.2.1",
+  crossScalaVersions += "3.3.1",
 )
 
 // *****************************************************************************
@@ -84,7 +83,7 @@ lazy val `pekko-http-argonaut` =
 lazy val `pekko-http-circe` =
   project
     .enablePlugins(AutomateHeaderPlugin)
-    .settings(commonSettings)
+    .settings(commonSettings, withScala3)
     .settings(
       libraryDependencies ++= Seq(
         library.pekkoHttp,
@@ -156,7 +155,7 @@ lazy val `pekko-http-ninny` =
 lazy val `pekko-http-play-json` =
   project
     .enablePlugins(AutomateHeaderPlugin)
-    .settings(commonSettings)
+    .settings(commonSettings, withScala3)
     .settings(
       libraryDependencies ++= Seq(
         library.pekkoHttp,
@@ -240,9 +239,9 @@ lazy val library =
       val zioJson            = "0.6.2"
     }
     // format: off
-    val pekkoHttp            = ("org.apache.pekko"                     %% "pekko-http"             % Version.pekkoHttp).cross(CrossVersion.for3Use2_13)
-    val pekkoHttpJacksonJava = ("org.apache.pekko"                     %% "pekko-http-jackson"     % Version.pekkoHttp).cross(CrossVersion.for3Use2_13)
-    val pekkoStream          = "org.apache.pekko"                      %% "pekko-stream"           % Version.pekko
+    val pekkoHttp            = "org.apache.pekko"                     %% "pekko-http"            % Version.pekkoHttp
+    val pekkoHttpJacksonJava = "org.apache.pekko"                     %% "pekko-http-jackson"    % Version.pekkoHttp
+    val pekkoStream          = "org.apache.pekko"                     %% "pekko-stream"          % Version.pekko
     val argonaut            = "io.argonaut"                           %% "argonaut"              % Version.argonaut
     val avro4sJson          = "com.sksamuel.avro4s"                   %% "avro4s-json"           % Version.avro4s
     val circe               = "io.circe"                              %% "circe-core"            % Version.circe
