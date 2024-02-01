@@ -27,7 +27,6 @@ import org.scalatest.BeforeAndAfterAll
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AsyncWordSpec
 import play.api.libs.json.{ Format, Json }
-import scala.collection.immutable.Seq
 import scala.concurrent.Await
 import scala.concurrent.duration.DurationInt
 
@@ -45,7 +44,7 @@ final class PlayJsonSupportSpec extends AsyncWordSpec with Matchers with BeforeA
   import PlayJsonSupport._
   import PlayJsonSupportSpec._
 
-  private implicit val system = ActorSystem()
+  private implicit val system: ActorSystem = ActorSystem()
 
   "PlayJsonSupport" should {
     "enable marshalling and unmarshalling objects for which `Writes` and `Reads` exist" in {
@@ -112,8 +111,9 @@ final class PlayJsonSupportSpec extends AsyncWordSpec with Matchers with BeforeA
       val `application/json-home` =
         MediaType.applicationWithFixedCharset("json-home", HttpCharsets.`UTF-8`, "json-home")
 
-      final object CustomPlayJsonSupport extends PlayJsonSupport {
-        override def unmarshallerContentTypes = List(`application/json`, `application/json-home`)
+      object CustomPlayJsonSupport extends PlayJsonSupport {
+        override def unmarshallerContentTypes: List[ContentTypeRange] =
+          List(`application/json`, `application/json-home`)
       }
       import CustomPlayJsonSupport._
 
@@ -122,7 +122,7 @@ final class PlayJsonSupportSpec extends AsyncWordSpec with Matchers with BeforeA
     }
   }
 
-  override protected def afterAll() = {
+  override protected def afterAll(): Unit = {
     Await.ready(system.terminate(), 42.seconds)
     super.afterAll()
   }

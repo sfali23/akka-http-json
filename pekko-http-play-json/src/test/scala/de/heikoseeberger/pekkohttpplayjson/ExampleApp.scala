@@ -29,7 +29,7 @@ import scala.io.StdIn
 
 object ExampleApp {
 
-  final object Foo {
+  object Foo {
     implicit val fooFormat: Format[Foo] = Json.format[Foo]
   }
   final case class Foo(bar: String)
@@ -59,7 +59,7 @@ object ExampleApp {
       }
     } ~ pathPrefix("stream") {
       post {
-        entity(as[SourceOf[Foo]]) { fooSource: SourceOf[Foo] =>
+        entity(as[SourceOf[Foo]]) { (fooSource: SourceOf[Foo]) =>
           complete(fooSource.throttle(1, 2.seconds))
         }
       } ~ get {
