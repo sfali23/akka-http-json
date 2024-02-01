@@ -31,7 +31,6 @@ import org.apache.pekko.http.scaladsl.util.FastFuture
 import org.apache.pekko.stream.scaladsl.{ Flow, Source }
 import org.apache.pekko.util.ByteString
 import play.api.libs.json.{ JsError, JsResultException, JsValue, Json, Reads, Writes }
-import scala.collection.immutable.Seq
 import scala.concurrent.Future
 import scala.util.Try
 import scala.util.control.NonFatal

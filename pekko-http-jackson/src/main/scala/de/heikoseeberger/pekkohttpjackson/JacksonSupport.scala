@@ -39,7 +39,6 @@ import com.fasterxml.jackson.core.`type`.TypeReference
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.scala.DefaultScalaModule
 import java.lang.reflect.{ ParameterizedType, Type => JType }
-import scala.collection.immutable.Seq
 import scala.concurrent.Future
 import scala.reflect.runtime.universe._
 import scala.util.Try

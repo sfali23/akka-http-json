@@ -38,7 +38,6 @@ import org.apache.pekko.util.ByteString
 import de.heikoseeberger.pekkohttpjson4s.Json4sSupport.ShouldWritePretty.False
 import java.lang.reflect.InvocationTargetException
 import org.json4s.{ Formats, MappingException, Serialization }
-import scala.collection.immutable.Seq
 import scala.concurrent.{ ExecutionContext, Future }
 import scala.util.Try
 import scala.util.control.NonFatal
